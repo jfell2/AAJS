@@ -17,7 +17,7 @@ if(isset($_REQUEST['submit']))
 
 	include('db_login.php');
 
-	$query=mysql_query("INSERT INTO Users (firstName, UserPassword, UserName, UserEmail) VALUES ('".$Net_ID."','".$Email."','".$FirstName."','".$LastName."','".$Password."','".$Major."','".$GradYear."','".$DegLevPur."','".$RSO_1."','".$RSO_2."');") or die("Error in registration!!");
+	$query=mysqli_query($link, "INSERT INTO Users (netid, inputEmail, firstName, lastName, inputPassword, major, graduationYear, degreeLevelPursuing, RSO1, RSO2) VALUES ('".$Net_ID."','".$Email."','".$FirstName."','".$LastName."','".$Password."','".$Major."','".$GradYear."','".$DegLevPur."','".$RSO_1."','".$RSO_2."');") or die("Error in registration!!");
 
 	#Go to the login page
 	echo('<script>window.location="login.php"</script>');
@@ -60,13 +60,13 @@ if(isset($_REQUEST['submit']))
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                  <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                  <input type="text" name="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
                   <label for="firstName">First name</label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
+                  <input type="text" name="lastName" class="form-control" placeholder="Last name" required="required">
                   <label for="lastName">Last name</label>
                 </div>
               </div>
@@ -74,7 +74,7 @@ if(isset($_REQUEST['submit']))
           </div>
           <div class="form-group">
             <div class="form-label-group">
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+              <input type="email" name="inputEmail" class="form-control" placeholder="Email address" required="required">
               <label for="inputEmail">Email address</label>
             </div>
           </div>
@@ -82,13 +82,13 @@ if(isset($_REQUEST['submit']))
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                  <input type="password" name="inputPassword" class="form-control" placeholder="Password" required="required">
                   <label for="inputPassword">Password</label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  <input type="text" id="netid" class="form-control" placeholder="NetID" required="required">
+                  <input type="text" name="netid" class="form-control" placeholder="NetID" required="required">
                   <label for="netid">NetID</label>
                 </div>
               </div>
@@ -98,22 +98,22 @@ if(isset($_REQUEST['submit']))
               <div class="form-row">
                   <div class="col-md-6">
                       <div class="form-label-group">
-                          <input type="text" id="major" class="form-control" placeholder="Major" required="required" autofocus="autofocus">
+                          <input type="text" name="major" class="form-control" placeholder="Major" required="required" autofocus="autofocus">
                               <label for="major">Major</label>
                               </div>
                   </div>
                   <div class="col-md-6">
                       <div class="form-label-group">
-                          <input type="text" id="GraduationYear" class="form-control" placeholder="Graduation Year" required="required">
-                              <label for="GraduationYear">Graduation Year</label>
+                          <input type="text" name="graduationYear" class="form-control" placeholder="Graduation Year" required="required">
+                              <label for="graduationYear">Graduation Year</label>
                               </div>
                   </div>
               </div>
           </div>
           <div class="form-group">
               <div class="form-label-group">
-                  <input type="text" id="DegreeLevelPursuing" class="form-control" placeholder="Ex. Bachelors, Masters" required="required">
-                      <label for="DegreeLevelPursuing">Degree Level Pursuing</label>
+                  <input type="text" name="degreeLevelPursuing" class="form-control" placeholder="Ex. Bachelors, Masters" required="required">
+                      <label for="degreeLevelPursuing">Degree Level Pursuing</label>
                       </div>
           </div>
           <p class="lead">Please list one or two RSOs that you are in if applicable.</p>
@@ -121,13 +121,13 @@ if(isset($_REQUEST['submit']))
               <div class="form-row">
                   <div class="col-md-6">
                       <div class="form-label-group">
-                          <input type="text" id="RSO1" class="form-control" placeholder="RSO">
+                          <input type="text" name="RSO1" class="form-control" placeholder="RSO">
                               <label for="RSO1">RSO 1</label>
                               </div>
                   </div>
                   <div class="col-md-6">
                       <div class="form-label-group">
-                          <input type="text" id="RSO2" class="form-control" placeholder="RSO">
+                          <input type="text" name="RSO2" class="form-control" placeholder="RSO">
                               <label for="RSO2">RSO 2</label>
                               </div>
                   </div>

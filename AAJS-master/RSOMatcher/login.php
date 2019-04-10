@@ -15,7 +15,7 @@ if(isset($_REQUEST['submit']))
 	$Password=$_REQUEST['inputPassword'];
 
 	include('db_login.php');
-	$query=mysqli_query("SELECT * FROM Users WHERE inputEmail='".$Email."' AND inputPassword='".$Password."'");
+	$query=mysqli_query($link, "SELECT * FROM Users WHERE inputEmail='".$Email."' AND inputPassword='".$Password."'");
 	$row=mysqli_fetch_array($query);
 	if(empty($row))
 	{
@@ -61,13 +61,13 @@ if(isset($_REQUEST['submit']))
         <form method="post" action="login.php">
           <div class="form-group">
             <div class="form-label-group">
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+              <input type="email" name="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
               <label for="inputEmail">Email address</label>
             </div>
           </div>
           <div class="form-group">
             <div class="form-label-group">
-              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+              <input type="password" name="inputPassword" class="form-control" placeholder="Password" required="required">
               <label for="inputPassword">Password</label>
             </div>
           </div>
@@ -82,7 +82,7 @@ if(isset($_REQUEST['submit']))
           <input type="submit" name="submit" class="btn btn-dark btn-block" value="Login">
         </form>
         <div class="text-center">
-          <a class="d-block small mt-3 db-dark" href="register.html">Register an Account</a>
+          <a class="d-block small mt-3 db-dark" href="register.php">Register an Account</a>
         </div>
       </div>
     </div>
