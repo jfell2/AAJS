@@ -20,7 +20,7 @@ if(isset($_REQUEST['submit']))
 	if(empty($row))
 	{
 		#False Info / User doesn't exist
-		echo('<script>alert("False login credentials!");</script>');
+		echo('<script>alert("False login credentials bitch!");</script>');
 	}
 	else
 	{
