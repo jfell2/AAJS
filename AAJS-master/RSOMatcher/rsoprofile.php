@@ -58,7 +58,7 @@
                       <div class="row">
                           <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                               <select class="form-control search-slt" name="searchMajor">
-                                  <option value="" disabled selected>Select Major</option>
+                                  <option value="">Select Major</option>
                                   <option value="Art History">Art History</option>
                                   <option value="Biology (MCB)">Biology (MCB)</option>
                                   <option value="Computer Engineering">Computer Engineering</option>
@@ -70,26 +70,14 @@
                                   <option value="Systems Engineering and Design">Systems Engineering and Design</option>
                               </select>
                           </div>
-                           <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                              <select class="form-control search-slt" name="searchDegreeLevelPursuing">
-                                  <option value="" disabled selected>Select Degree Level</option>
-                                  <option value="Undergraduate Freshman">Undergraduate Freshman</option>
-                                  <option value="Undergraduate Sophomore">Undergraduate Sophomore</option>
-                                  <option value="Undergraduate Junior">Undergraduate Junior</option>
-                                  <option value="Undergraduate Senior">Undergraduate Senior</option>
-                                  <option value="Graduate Student">Graduate Student</option>
-                                  <option value="Alumni">Alumni</option>
-                              </select>
-                          </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                               <select class="form-control search-slt" name="searchGraduationYear">
-                                  <option value="" disabled selected>Select Graduation Year</option>
-                                  <option>Example one</option>
-                                  <option>Example one</option>
-                                  <option>Example one</option>
-                                  <option>Example one</option>
-                                  <option>Example one</option>
-                                  <option>Example one</option>
+                                  <option value="">Select Graduation Year</option>
+                                  <option value="2019">2019</option>
+                                  <option value="2020">2020</option>
+                                  <option value="2021">2021</option>
+                                  <option value="2022">2022</option>
+                                  <option value="2023">2023</option>
                               </select>
                           </div>
                           <div class="col-lg-3 col-md-3 col-sm-12 p-0">
@@ -110,7 +98,7 @@
                           </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                               <select class="form-control search-slt" name="searchCategory">
-                                  <option value="" disabled selected>Select RSO Category</option>
+                                  <option value="">Select RSO Category</option>
                                   <option value="Academic/Pre-Professional">Academic</option>
                                   <option value="Creative/Performing Arts">Creative</option>
                                   <option value="Social">Social</option>
@@ -121,7 +109,7 @@
                           </div>
                           <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                               <select class="form-control search-slt" name="searchDepartment">
-                                  <option value="" disabled selected>Select RSO Department</option>
+                                  <option value="">Select RSO Department</option>
                                   <option value="CS">CS</option>
                                   <option value="ECE">ECE</option>
                                   <option value="Engineering">Engineering</option>
@@ -146,9 +134,11 @@ $query = mysqli_query($link,"SELECT * FROM RSO");
 if(isset($_REQUEST['submit']))
 {
 	$majorFilter=$_REQUEST['searchMajor'];
+  $yearFilter=$_REQUEST['searchGraduationYear'];
 
 	include('db_login.php');
-	$query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND u.major='".$majorFilter."'");
+	$query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND (u.major='$majorFilter' OR ('$majorFilter' IS NULL)) AND (u.graduationYear='$yearFilter' OR ('$yearFilter' IS NULL))");
+
 	$row=mysqli_fetch_array($query);
 	if(empty($row))
 	{
@@ -158,7 +148,11 @@ if(isset($_REQUEST['submit']))
 	}
 	else
 	{
-    $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND u.major='".$majorFilter."'");
+    $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND (u.major='$majorFilter' OR ('$majorFilter' IS NULL)) AND (u.graduationYear='$yearFilter' OR ('$yearFilter' IS NULL))");
+
+
+
+
 
 	}
 
