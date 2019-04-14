@@ -1,3 +1,13 @@
+<?php
+session_start();
+include('db_login.php');
+
+$Email = $_SESSION['login'];
+$query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."';")
+ ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,8 +59,36 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Student Profile Page</h1>
-        <p class="lead">UNDER CONSTRUCTION</p>
+        <h1 class="mt-5">Student Profile</h1>
+        <table class ="table-light" border= "2" cellpadding = "4" align="center">
+            <tr>
+                <th> NetID </th>
+                <th> Email </th>
+                <th> First Name </th>
+                <th> Last Name </th>
+                <th> Major </th>
+                <th> Graduation Year </th>
+                <th> Degree Level Pursuing </th>
+                <th> RSO1 </th>
+                <th> RSO2 </th>
+            </tr>
+        <?php
+        while ($row = mysqli_fetch_array($query)) {
+            echo
+                "<tr>
+                <td>{$row['netid']}</td>
+                <td>{$row['inputEmail']}</td>
+                <td>{$row['firstName']}</td>
+                <td>{$row['lastName']}</td>
+                <td>{$row['major']}</td>
+                <td>{$row['graduationYear']}</td>
+                <td>{$row['degreeLevelPursuing']}</td>
+                <td>{$row['RSO1']}</td>
+                <td>{$row['RSO2']}</td>
+                </tr>\n";
+        }
+         ?>
+        </table>
         <a href="logout.php">Logout</a>
         </div>
     </div>
