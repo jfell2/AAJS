@@ -4,7 +4,7 @@ session_start();
 if(isset($_SESSION['sig']))
 {
 	#User is already logged in
-	echo("<script>window.location='studentprofile.html'</script>");
+	echo("<script>window.location='studentprofile.php'</script>");
 }
 
 #Check if the login form was submitted
@@ -26,7 +26,7 @@ if(isset($_REQUEST['submit']))
 	{
 		#User exists and login is successful
 		$_SESSION['sig']="OK";
-		echo('<script>window.location="studentprofile.html"</script>');
+		echo('<script>window.location="studentprofile.php"</script>');
 	}
 }
 
