@@ -58,7 +58,7 @@
                       <div class="row">
                           <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                               <select class="form-control search-slt" name="searchMajor">
-                                  <option value="">Select Major</option>
+                                  <option value="any">Select Major</option>
                                   <option value="Art History">Art History</option>
                                   <option value="Biology (MCB)">Biology (MCB)</option>
                                   <option value="Computer Engineering">Computer Engineering</option>
@@ -72,7 +72,7 @@
                           </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                               <select class="form-control search-slt" name="searchGraduationYear">
-                                  <option value="">Select Graduation Year</option>
+                                  <option value="any">Select Graduation Year</option>
                                   <option value="2019">2019</option>
                                   <option value="2020">2020</option>
                                   <option value="2021">2021</option>
@@ -98,23 +98,28 @@
                           </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                               <select class="form-control search-slt" name="searchCategory">
-                                  <option value="">Select RSO Category</option>
-                                  <option value="Academic/Pre-Professional">Academic</option>
-                                  <option value="Creative/Performing Arts">Creative</option>
-                                  <option value="Social">Social</option>
-                                  <option value="Service/Philanthropy">Service</option>
-                                  <option value="Club Sports">Club Sports</option>
-                                  <option value="Religious">Religious</option>
+                                  <option value="any">Select RSO Category</option>
+                                  <option value="Academic">Academic</option>
+                                  <option value="Hobby">Hobby</option>
+                                  <option value="Honors">Honors</option>
+                                  <option value="Leadership">Leadership</option>
+                                  <option value="Planning Events">Planning Events</option>
+                                  <option value="Professional">Professional</option>
+                                  <option value="Sports">Sports</option>
+                                  <option value="Volunteering">Volunteering</option>
                               </select>
                           </div>
                           <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                               <select class="form-control search-slt" name="searchDepartment">
-                                  <option value="">Select RSO Department</option>
-                                  <option value="CS">CS</option>
+                                  <option value="any">Select RSO Department</option>
+                                  <option value="Art">Art</option>
+                                  <option value="Computer Science">CS</option>
                                   <option value="ECE">ECE</option>
                                   <option value="Engineering">Engineering</option>
-                                  <option value="ISE">ISE</option>
-                                  <option value="MechSE">MechSE</option>
+                                  <option value="Fine Arts">Fine Arts</option>
+                                  <option value="Industrial Engineering">IE</option>
+                                  <option value="Mechanical Engineering">ME</option>
+                                  <option value="None">No Affiliation</option>
                               </select>
                           </div>
                       </div>
@@ -135,10 +140,11 @@ if(isset($_REQUEST['submit']))
 {
 	$majorFilter=$_REQUEST['searchMajor'];
   $yearFilter=$_REQUEST['searchGraduationYear'];
+  $categoryFilter=$_REQUEST['searchCategory'];
+  $departmentFilter=$_REQUEST['searchDepartment'];
 
 	include('db_login.php');
-	$query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND (u.major='$majorFilter' OR ('$majorFilter' IS NULL)) AND (u.graduationYear='$yearFilter' OR ('$yearFilter' IS NULL))");
-
+  $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND ('$majorFilter'='any' OR u.major='$majorFilter') AND ('$yearFilter'='any' OR u.graduationYear='$yearFilter') AND ('$categoryFilter'='any' OR r.Category='$categoryFilter') AND ('$departmentFilter'='any' OR r.Department='$departmentFilter')");
 	$row=mysqli_fetch_array($query);
 	if(empty($row))
 	{
@@ -148,7 +154,7 @@ if(isset($_REQUEST['submit']))
 	}
 	else
 	{
-    $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND (u.major='$majorFilter' OR ('$majorFilter' IS NULL)) AND (u.graduationYear='$yearFilter' OR ('$yearFilter' IS NULL))");
+  $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND ('$majorFilter'='any' OR u.major='$majorFilter') AND ('$yearFilter'='any' OR u.graduationYear='$yearFilter') AND ('$categoryFilter'='any' OR r.Category='$categoryFilter') AND ('$departmentFilter'='any' OR r.Department='$departmentFilter')");
 
 
 
