@@ -25,6 +25,7 @@ if(isset($_REQUEST['submit']))
 	else
 	{
 		#User exists and login is successful
+		$_SESSION['login']=$Email;
 		$_SESSION['sig']="OK";
 		echo('<script>window.location="studentprofile.php"</script>');
 	}
