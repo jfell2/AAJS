@@ -69,8 +69,6 @@ $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."
                 <th> Major </th>
                 <th> Graduation Year </th>
                 <th> Degree Level Pursuing </th>
-                <th> RSO1 </th>
-                <th> RSO2 </th>
             </tr>
         <?php
         while ($row = mysqli_fetch_array($query)) {
@@ -83,8 +81,6 @@ $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."
                 <td>{$row['major']}</td>
                 <td>{$row['graduationYear']}</td>
                 <td>{$row['degreeLevelPursuing']}</td>
-                <td>{$row['RSO1']}</td>
-                <td>{$row['RSO2']}</td>
                 </tr>\n";
         }
          ?>
