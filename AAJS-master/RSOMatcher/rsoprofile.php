@@ -33,7 +33,7 @@
             <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="studentprofile.html">Student Profile</a>
+            <a class="nav-link" href="studentprofile.php">Student Profile</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="">RSO Profile</a>
@@ -60,10 +60,9 @@
                               <select class="form-control search-slt" name="searchMajor">
                                   <option value="any">Select Major</option>
                                   <option value="Art History">Art History</option>
-                                  <option value="Biology (MCB)">Biology (MCB)</option>
+                                  <option value="MCB">Biology (MCB)</option>
                                   <option value="Computer Engineering">Computer Engineering</option>
-                                  <option value="Computer Sceince">Computer Science</option>
-                                  <option value="Industrial Engineering">Industrial Engineering</option>
+                                  <option value="Computer Science">Computer Science</option>
                                   <option value="Mechanical Engineering">Mechanical Engineering</option>
                                   <option value="Psychology">Psychology</option>
                                   <option value="Secondary Education of English">Secondary Education of English</option>
@@ -76,8 +75,6 @@
                                   <option value="2019">2019</option>
                                   <option value="2020">2020</option>
                                   <option value="2021">2021</option>
-                                  <option value="2022">2022</option>
-                                  <option value="2023">2023</option>
                               </select>
                           </div>
                           <div class="col-lg-3 col-md-3 col-sm-12 p-0">
@@ -142,9 +139,12 @@ if(isset($_REQUEST['submit']))
   $yearFilter=$_REQUEST['searchGraduationYear'];
   $categoryFilter=$_REQUEST['searchCategory'];
   $departmentFilter=$_REQUEST['searchDepartment'];
+  $netidFilter=$_REQUEST['searchNetid'];
+  $titleFilter=$_REQUEST['searchTitle'];
 
 	include('db_login.php');
-  $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND ('$majorFilter'='any' OR u.major='$majorFilter') AND ('$yearFilter'='any' OR u.graduationYear='$yearFilter') AND ('$categoryFilter'='any' OR r.Category='$categoryFilter') AND ('$departmentFilter'='any' OR r.Department='$departmentFilter')");
+  $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND ('$netidFilter'='' OR u.NetID='$netidFilter') AND ('$titleFilter'='' OR r.Title='$titleFilter') AND
+    ('$majorFilter'='any' OR u.major='$majorFilter') AND ('$yearFilter'='any' OR u.graduationYear='$yearFilter') AND ('$categoryFilter'='any' OR r.Category='$categoryFilter') AND ('$departmentFilter'='any' OR r.Department='$departmentFilter')");
 	$row=mysqli_fetch_array($query);
 	if(empty($row))
 	{
@@ -154,7 +154,8 @@ if(isset($_REQUEST['submit']))
 	}
 	else
 	{
-  $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND ('$majorFilter'='any' OR u.major='$majorFilter') AND ('$yearFilter'='any' OR u.graduationYear='$yearFilter') AND ('$categoryFilter'='any' OR r.Category='$categoryFilter') AND ('$departmentFilter'='any' OR r.Department='$departmentFilter')");
+    $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND ('$netidFilter'='' OR u.NetID='$netidFilter') AND ('$titleFilter'='' OR r.Title='$titleFilter') AND
+      ('$majorFilter'='any' OR u.major='$majorFilter') AND ('$yearFilter'='any' OR u.graduationYear='$yearFilter') AND ('$categoryFilter'='any' OR r.Category='$categoryFilter') AND ('$departmentFilter'='any' OR r.Department='$departmentFilter')");
 
 
 
