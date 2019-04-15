@@ -91,6 +91,75 @@ $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."
         }
          ?>
         </table>
+        <p>
+
+        </p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update" data-whatever="@getbootstrap">Update Profile</button>
+        <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="addLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="updateLabel">Update Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Email:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Major:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Graduation Year:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-body">
+                <input type="submit" name="updatesubmit" class="btn btn-primary btn-block" value="Update Profile">
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete" data-whatever="@getbootstrap">Delete Profile</button>
+        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="addLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="updateLabel">Delete Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p class="lead">Are you sure you want to delete your profile?</p>
+              </div>
+              <div class="modal-body">
+                <input type="submit" name="deletesubmit" class="btn btn-primary btn-block" value="Delete Profile">
+                <?php
+                        include('db_login.php');
+                        if(isset($_REQUEST['deletesubmit'])) {
+                                $query=mysqli_query($link, "DELETE * FROM Users WHERE inputEmail='".$Email."';");
+                                echo('<script>alert("Your profile has been deleted.");</script>');
+                                echo('<script>window.location="index.php"</script>');
+                        }
+                ?>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </body>
+
+
+        </html>
+
+
         <h2 class="mt-5"> Recommendations </h2>
         <p class="lead"> This is a shortlist of RSOs that our advanced matching algorithm has hand-picked for you as a possible match based on your profile.  We hope our recommendations help you in your search to find an RSO that is right for you!</p>
         <table class ="table-light" border= "2" cellpadding = "4" align="center">
