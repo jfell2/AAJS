@@ -205,12 +205,12 @@ while($newrow = mysqli_fetch_assoc($query)) {
         <div>
           <center>
             <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal <?php echo $newrow['Title'] ?>">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="<?php echo "#Modal" . $newrow['Title'] ?>">
         View <?php echo $newrow['Title'] ?> Members
       </button>
 
       <!-- Modal -->
-      <div class="modal fade" id="Modal <?php echo $newrow['Title'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $newrow['Title'] ?>Label" aria-hidden="true">
+      <div class="modal fade" id="<?php echo "Modal" . $newrow['Title'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $newrow['Title'] ?>Label" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
