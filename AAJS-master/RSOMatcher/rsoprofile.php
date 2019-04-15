@@ -336,16 +336,25 @@ while($newrow = mysqli_fetch_assoc($query)) {
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">RSO Name:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control search-slt" name="deleteTitle" placeholder="Enter RSO Title">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Delete RSO</button>
+        <input type="submitr" name="submitr" class="btn btn-light btn-block" value="Submit">
       </div>
     </div>
   </div>
 </div>
+
+<?php
+if(isset($_REQUEST['submitr']))
+{
+	$majorFilter=$_REQUEST['deleteTitle'];
+  $query=mysqli_query($link, "DELETE FROM RSO r, RSO_members rm WHERE r.title='$majorFilter' AND rm.title='$majorFilter'");
+   echo "<meta http-equiv='refresh' content='0'>";
+}
+?>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update" data-whatever="@getbootstrap">Update RSO</button>
 
