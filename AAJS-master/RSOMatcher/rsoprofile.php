@@ -30,7 +30,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="studentprofile.php">Student Profile</a>
@@ -205,36 +205,35 @@ while($newrow = mysqli_fetch_assoc($query)) {
         <div>
           <center>
             <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="<?php echo "#Modal" . $newrow['Title'] ?>">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="<?php echo "#Modal" . $newrow['President'] ?>">
         View <?php echo $newrow['Title'] ?> Members
       </button>
 
-      <!-- Modal -->
-      <div class="modal fade" id="<?php echo "Modal" . $newrow['Title'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $newrow['Title'] ?>Label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="<?php echo $newrow['Title'] ?>Label"><?php echo $newrow['Title'] ?> Members</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <?php
-               while ($memberrow =  mysqli_fetch_assoc($memberquery)) {
-                 echo $memberrow['NetID']."<br>";
-               }
-                ?>
-            </div>
-          </div>
-        </div>
-      </div>
         </div>
       </div>
     </div>
   </div>
   <br>
-
+  <!-- Modal -->
+  <div class="modal fade" id="<?php echo "Modal" . $newrow['President'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $newrow['Title'] ?>Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="<?php echo $newrow['Title'] ?>Label"><?php echo $newrow['Title'] ?> Members</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <?php
+           while ($memberrow =  mysqli_fetch_assoc($memberquery)) {
+             echo $memberrow['NetID']."<br>";
+           }
+            ?>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php
 }
  ?>
