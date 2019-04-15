@@ -1,3 +1,18 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION['sig']))
+{
+        $logbutton = "Logout";
+        $logdata = "logout.php";
+} else {
+        $logbutton = "Login";
+        $logdata = "login.php";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +55,7 @@
             <span class="sr-only">(current)</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.php">Login</a>
+            <a class="nav-link" href=<?php echo"$logdata"?>><?php echo"$logbutton"?></a>
           </li>
         </ul>
       </div>
