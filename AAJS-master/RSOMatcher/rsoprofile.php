@@ -341,21 +341,20 @@ while($newrow = mysqli_fetch_assoc($query)) {
         </form>
       </div>
       <div class="modal-footer">
-        <input type="submitr" name="submitr" class="btn btn-light btn-block" value="Submit">
+        <p><input type="submit" name="submitr" class="btn btn-primary" value="Submit" /></p>
       </div>
     </div>
   </div>
 </div>
-
 <?php
-if(isset($_REQUEST['submitr']))
+if(isset($_REQUEST['submitd']))
 {
-	$majorFilter=$_REQUEST['deleteTitle'];
-  $query=mysqli_query($link, "DELETE FROM RSO r, RSO_members rm WHERE r.title='$majorFilter' AND rm.title='$majorFilter'");
-   echo "<meta http-equiv='refresh' content='0'>";
+  include('db_login.php');
+  $deleteFilter=$_REQUEST['deleteTitle'];
+  $deletequery = mysqli_query($link, "DELETE FROM RSO r WHERE r.title='$deleteFilter'");
+  echo "done";
 }
 ?>
-
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update" data-whatever="@getbootstrap">Update RSO</button>
 
 <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="addLabel" aria-hidden="true">
