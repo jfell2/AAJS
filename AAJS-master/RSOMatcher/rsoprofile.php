@@ -48,8 +48,8 @@
   </nav>
 
   <!-- Page Content -->
-  <h4 class="text-center mt-4">three select search</h4>
-  <h6 class="text-center mb-4">bootstrap 4</h6>
+  <h4 class="text-center mt-4">RSO Search</h4>
+  <h6 class="text-center mb-4">Use the filters below to find your next organization!</h6>
   <section class="search-sec">
       <div class="container">
           <form action="rsoprofile.php" method="post">
@@ -143,7 +143,7 @@ if(isset($_REQUEST['submit']))
   $titleFilter=$_REQUEST['searchTitle'];
 
 	include('db_login.php');
-  $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND ('$netidFilter'='' OR u.NetID='$netidFilter') AND ('$titleFilter'='' OR r.Title='$titleFilter') AND
+  $query=mysqli_query($link, "SELECT DISTINCT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND ('$netidFilter'='' OR u.NetID='$netidFilter') AND ('$titleFilter'='' OR r.Title='$titleFilter') AND
     ('$majorFilter'='any' OR u.major='$majorFilter') AND ('$yearFilter'='any' OR u.graduationYear='$yearFilter') AND ('$categoryFilter'='any' OR r.Category='$categoryFilter') AND ('$departmentFilter'='any' OR r.Department='$departmentFilter')");
 	$row=mysqli_fetch_array($query);
 	if(empty($row))
@@ -154,77 +154,77 @@ if(isset($_REQUEST['submit']))
 	}
 	else
 	{
-    $query=mysqli_query($link, "SELECT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND ('$netidFilter'='' OR u.NetID='$netidFilter') AND ('$titleFilter'='' OR r.Title='$titleFilter') AND
+    $query=mysqli_query($link, "SELECT DISTINCT * FROM RSO r, RSO_members rm, Users u WHERE r.title=rm.title AND rm.netid = u.netid AND ('$netidFilter'='' OR u.NetID='$netidFilter') AND ('$titleFilter'='' OR r.Title='$titleFilter') AND
       ('$majorFilter'='any' OR u.major='$majorFilter') AND ('$yearFilter'='any' OR u.graduationYear='$yearFilter') AND ('$categoryFilter'='any' OR r.Category='$categoryFilter') AND ('$departmentFilter'='any' OR r.Department='$departmentFilter')");
-
-
-
-
 
 	}
 
 }
 
-while($row = mysqli_fetch_assoc($query)) {
-
+while($newrow = mysqli_fetch_assoc($query)) {
+ $memberquery= mysqli_query($link, "SELECT rm.NetID FROM RSO_members rm WHERE rm.title='".$newrow['Title']."'");
 ?>
   <div class="wrap-collabsible">
-    <input id=<?php echo $row['Title'] ?> class="toggle" type="checkbox">
-    <label for=<?php echo $row['Title'] ?> class="lbl-toggle"><?php echo $row['Title'] ?></label>
+    <input id=<?php echo $newrow['Title'] ?> class="toggle" type="checkbox">
+    <label for=<?php echo $newrow['Title'] ?> class="lbl-toggle"><?php echo $newrow['Title'] ?></label>
     <div class="collapsible-content">
       <div class="content-inner">
         <div class="row">
             <div class="col-sm">
               <center>
-                <?php echo "Category: " . $row['Category'] ?>
+                <?php echo "Category: " . $newrow['Category'] ?>
             </div>
             <div class="col-sm">
               <center>
-                <?php echo "President: " . $row['President'] ?>
+                <?php echo "President: " . $newrow['President'] ?>
             </div>
             <div class="col-sm">
               <center>
-                <?php echo "Treasurer: " . $row['Treasurer'] ?>
+                <?php echo "Treasurer: " . $newrow['Treasurer'] ?>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-sm">
               <center>
-                <?php echo "Department: " . $row['Department'] ?>
+                <?php echo "Department: " . $newrow['Department'] ?>
             </div>
             <div class="col-sm">
               <center>
-                <?php echo "Website: " . $row['Website'] ?>
+                <?php echo "Website: " . $newrow['Website'] ?>
             </div>
             <div class="col-sm">
               <center>
-                <?php echo "Email: " . $row['Email'] ?>
+                <?php echo "Email: " . $newrow['Email'] ?>
             </div>
         </div>
         <p>
           <center>
-          <?php echo  $row['Description'] ?>
+          <?php echo  $newrow['Description'] ?>
         </p>
         <div>
           <center>
             <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        View <?php echo $row['Title'] ?> Members
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal <?php echo $newrow['Title'] ?>">
+        View <?php echo $newrow['Title'] ?> Members
       </button>
 
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="Modal <?php echo $newrow['Title'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $newrow['Title'] ?>Label" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"><?php echo $row['Title'] ?> Members</h5>
+              <h5 class="modal-title" id="<?php echo $newrow['Title'] ?>Label"><?php echo $newrow['Title'] ?> Members</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              ...
+              <?php
+               while ($memberrow =  mysqli_fetch_assoc($memberquery)) {
+                 echo $memberrow['NetID']."<br>";
+               }
+                ?>
             </div>
           </div>
         </div>
