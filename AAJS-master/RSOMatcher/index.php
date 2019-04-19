@@ -35,7 +35,7 @@ if(isset($_SESSION['sig']))
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">RSO Matcher</a>
+      <a class="navbar-brand" href="index.php">RSO Matcher</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -72,7 +72,11 @@ if(isset($_SESSION['sig']))
         <p class="lead">Search different RSO's based off your interests or use our reccomendations to help find your perfect RSO!</p>
       </div>
     </div>
+    <center>
+    <a class="btn btn-primary btn-lg " href="register.php" role="button">Get Started</a>
   </div>
+
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="css/jquery.min.js"></script>
