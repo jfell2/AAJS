@@ -303,7 +303,7 @@ while($newrow = mysqli_fetch_assoc($query)) {
                <option value="None">No Affiliation</option>
              </select>
             </br>
-            <input type="submit" name="submitinsert" id="submitinsert" value="Add" />
+            <input type="submit" class="btn btn-primary btn-block" name="submitinsert" id="submitinsert" value="Add" />
          </form>
        </div>
      </div>
@@ -382,7 +382,7 @@ while($newrow = mysqli_fetch_assoc($query)) {
                <option value="None">No Affiliation</option>
              </select>
             </br>
-            <input type="submit" name="submitupdate" id="submitupdate" value="Update" />
+            <input type="submit" class="btn btn-primary btn-block" name="submitupdate" id="submitupdate" value="Update" />
          </form>
       </div>
     </div>
