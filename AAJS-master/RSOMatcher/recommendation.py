@@ -21,15 +21,15 @@ def mysqlconnect(email):
         return 0
     # If Connection Is Successful
     #print("Connected")
-    
+
     # Making Cursor Object For Query Execution
     cursor=db_connection.cursor(buffered=True)
 
 # Executing Query
-cursor.execute("SELECT CURDATE();")
-    
-    # Above Query Gives Us The Current Date
-    # Fetching Data
+    cursor.execute("SELECT CURDATE();")
+
+# Above Query Gives Us The Current Date
+# Fetching Data
     m = cursor.fetchone()
     
     # Printing Result Of Above
@@ -65,20 +65,20 @@ def recommend (db_connection, cursor, email):
                 user_df['Similarity'][row] = user_df['Similarity'][row] + levenshtein_ratio_and_distance(str(user_df.iloc[row][column]), str(user_wanted[column].iloc[index]))
 
 #print (user_df)
-best_user = user_df.nlargest(5, 'Similarity')
-if NetID in members_df.values:
-    compare_NetID = best_user.iloc[0]['netid']
+    best_user = user_df.nlargest(5, 'Similarity')
+    if NetID in members_df.values:
+        compare_NetID = best_user.iloc[0]['netid']
     else:
         compare_NetID = best_user.iloc[1]['netid']
 #print (compare_NetID)
 
-ass_member = members_df[members_df['netid'] == compare_NetID]
+    ass_member = members_df[members_df['netid'] == compare_NetID]
 
-ass_rsos = pd.DataFrame()
+    ass_rsos = pd.DataFrame()
 
-for index, row in ass_member.iterrows():
+    for index, row in ass_member.iterrows():
     #print(row['Title'])
-    ass_rsos = ass_rsos.append(rso_df[rso_df['Title'] == row['Title']])
+        ass_rsos = ass_rsos.append(rso_df[rso_df['Title'] == row['Title']])
     
     rso_df['Similarity'] = 0.00000
     for index in range(ass_rsos.shape[0]):
@@ -89,7 +89,7 @@ for index, row in ass_member.iterrows():
                 rso_df['Similarity'][row] = rso_df['Similarity'][row] + levenshtein_ratio_and_distance(rso_df.iloc[row][column], ass_rsos[column].iloc[index])
 
 
-best_df = rso_df.nlargest(5, 'Similarity')
+    best_df = rso_df.nlargest(5, 'Similarity')
 #best_df = rso_df.sort_values('Similarity', ascending = False).head(5)
 #print(best_df)
 #best_df.to_html('filename.html')
