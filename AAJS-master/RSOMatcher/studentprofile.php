@@ -11,7 +11,15 @@ include('db_login.php');
 $Email = $_SESSION['login'];
 $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."';");
 
+
+$input = $_POST['value'];
+
+$result = shell_exec('/Users/aashna/anaconda3/bin/python recommendation.py ' . $input);
+
+echo($result);
  ?>
+
+
 
 
 
@@ -247,16 +255,87 @@ $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."
 
 
         <h2 class="mt-5"> Recommendations </h2>
+        <input type="button" name="runmyscript" value=" Run Python code " onClick="window.location.reload()"; <? exec('python recommendation.py' . $Email); ?>>
         <p class="lead"> This is a shortlist of RSOs that our advanced matching algorithm has hand-picked for you as a possible match based on your profile.  We hope our recommendations help you in your search to find an RSO that is right for you!</p>
+        <!-- <head>
+          <script src="jquery.js"></script>
+          <script>
+          $(function(){
+            $("#includedContent").load("filename.html");
+          });
+          </script>
+        </head> -->
 
-         <p>
+        <!-- <?php echo nl2br($result); ?> -->
+        <table class ="table-light" border= "2" cellpadding = "4" align="center">
+
+              <tr>
+                <td> 1 </td>
+                <td> 2 </td>
+                <td> 3 </td>
+                <td> 4 </td>
+                <td> 5 </td>
+              </tr>
+
+        <?php
+        $temp = explode("\n", $result);
+            echo
+                "
+                <tr>
+                <td>{$temp[1]}</td>
+                <td>{$temp[2]}</td>
+                <td>{$temp[3]}</td>
+                <td>{$temp[4]}</td>
+                <td>{$temp[5]}</td>
+                </tr>\n";
+
+         ?>
+        </table>
 
 
 
+        <body>
+          <div id="includedContent"></div>
+        </body>
+        <!-- <table class ="table-light" border= "2" cellpadding = "4" align="center">
+            <tr>
+                <th> Title </th>
+                <th> Description </th>
+                <th> Category </th>
+                <th> Website</th>
+                <th> Email </th>
+                <th> Department </th>
+            </tr>
+        <?php
+                $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."';");
+                while ($row = mysqli_fetch_array($query)) {
+                        $netid = $row['netid'];
+                        $inputEmail = $row['inputEmail'];
+                        $firstName = $row['firstName'];
+                        $lastName = $row['lastName'];
+                        $major = $row['major'];
+                        $graduationYear = $row['graduationYear'];
+                        $degreeLevelPursuing = $row['degreeLevelPursuing'];
+                }
+                $query = mysqli_query($link, "SELECT * FROM ((SELECT * FROM ((SELECT * FROM ((SELECT *, count(*) as countmajor FROM ((SELECT Title, Description, Category, Website, Email, Department, graduationYear, RSOmerge.netid as netid, major FROM Users INNER JOIN ((SELECT RSO_members.Title, RSO_members.netid, Description, Category, Website, Email, Department FROM RSO INNER JOIN RSO_members ON RSO.Title = RSO_members.Title) as RSOmerge) ON Users.netid = RSOmerge.netid) as trimerge) WHERE major = '".$major."' GROUP BY Title) as t1) HAVING countmajor > 0) as final1) UNION ( SELECT * FROM((SELECT *, count(*) as countgradyear FROM ((SELECT Title, Description, Category, Website, Email, Department, graduationYear, RSOmerge.netid as netid, major FROM Users INNER JOIN ((SELECT RSO_members.Title, RSO_members.netid, Description, Category, Website, Email, Department FROM RSO INNER JOIN RSO_members ON RSO.Title = RSO_members.Title) as RSOmerge) ON Users.netid = RSOmerge.netid) as trimerge) WHERE graduationYear = '".$graduationYear."' GROUP BY Title) as t2) HAVING countgradyear > 1)) as final) GROUP BY Title;");
+                if (!$query) {
+                    printf("Error: %s\n", mysqli_error($link));
+                    exit();
+                }
+                while ($row = mysqli_fetch_array($query)) {
+                        echo
+                            "<tr>
+                            <td>{$row['Title']}</td>
+                            <td>{$row['Description']}</td>
+                            <td>{$row['Category']}</td>
+                            <td>{$row['Website']}</td>
+                            <td>{$row['Email']}</td>
+                            <td>{$row['Department']}</td>
+                            </tr>\n";
 
-
-
-        </p>
+                }
+         ?>
+         </table> -->
         <p>
         </p>
         </div>
