@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 19, 2019 at 10:41 AM
+-- Generation Time: Apr 19, 2019 at 09:01 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -31,18 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `answers` (
   `q_id` int(11) NOT NULL,
   `a_id` int(11) NOT NULL,
-  `a_text` text NOT NULL
+  `a_text` text NOT NULL,
+  `a_netid` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `answers`
---
-
-INSERT INTO `answers` (`q_id`, `a_id`, `a_text`) VALUES
-(1, 1, 'It does this'),
-(1, 2, 'It does that'),
-(1, 7, 'The time is 2:38am'),
-(1, 8, 'The time is 2:38am');
 
 -- --------------------------------------------------------
 
@@ -54,14 +45,6 @@ CREATE TABLE `questions` (
   `q_id` int(11) NOT NULL,
   `q_title` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `questions`
---
-
-INSERT INTO `questions` (`q_id`, `q_title`) VALUES
-(1, 'What does this do?'),
-(6, 'What time is it?');
 
 -- --------------------------------------------------------
 
@@ -98,6 +81,7 @@ INSERT INTO `RSO` (`rso_id`, `Title`, `President`, `Treasurer`, `Description`, `
 (10, 'Illini Formula Electric', 'PresFormula', 'TreasFormula', 'Building Race Cars', 'Academic', 'https://www.illiniformulaelect', 'formula@gmail.com', 'Mechanical Engineering'),
 (11, 'Illini Mentor Program', 'Jaimin Patel', 'Sam Joshi', 'University of Illinois students mentoring future leaders today', 'Leadership', 'http://publish.illinois.edu/il', 'jpate203@illinois.edu', 'None'),
 (12, 'Illini Student Musicals', 'Aleeza Leder Macek', 'Kelsey Handschuh', 'Performance of musical theater at the University of Illinois at Urbana-Champaign', 'Hobby', 'https://illinimusicals.wixsite', 'President@IlliniStudentMusical', 'Fine Arts'),
+(18, 'Illinois Business Consulting', 'David Atkinson', 'Oulay', 'Student run consulting through the college of business', 'Professional', 'www.ibc.illinois.edu', 'ibcsot@gmail.com', 'Engineering'),
 (14, 'Pi Tau Sigma', 'Alexandra Baumgart', 'Omar Darwish', 'Mechanical Engineering Honors Society', 'Honors', 'https://pitausigma.mechse.illi', 'baumgrt2@illinois.edu', 'Mechanical Engineering'),
 (15, 'Society of Women Engineers', 'Abby Pakeltis', 'Alice Lin', 'Diverse network of women in pursuit of engineering', 'Professional', 'https://www.societyofwomenengi', 'UIUC.SWE@GMAIL.COM', 'Engineering'),
 (16, 'Women in ECE', 'Monil Pathak', 'Carolyn Nye', 'Inspire women in Electrical and Computer Engineering', 'Professional', 'https://wece.ece.illinois.edu/', 'wece.uiuc@gmail.com', 'ECE');
@@ -119,6 +103,7 @@ CREATE TABLE `RSO_members` (
 
 INSERT INTO `RSO_members` (`Title`, `netid`) VALUES
 ('8 to Create', 'ipon2'),
+('8 to Create', 'snarend2'),
 ('Alpha Phi Omega', 'ipon2'),
 ('Alpha Phi Omega', 'jfell2'),
 ('Alpha Phi Omega', 'suhinad2'),
@@ -137,6 +122,7 @@ INSERT INTO `RSO_members` (`Title`, `netid`) VALUES
 ('Illini Student Musicals', 'amyhoke2'),
 ('Illini Student Musicals', 'axu5'),
 ('Illini Student Musicals', 'kway4'),
+('Illinois Business Consulting', 'snarend2'),
 ('Pi Tau Sigma', 'dsliu2'),
 ('Society of Women Engineers', 'aashnaw2'),
 ('Society of Women Engineers', 'pallavi3'),
@@ -220,27 +206,6 @@ ALTER TABLE `Users`
   ADD PRIMARY KEY (`netid`),
   ADD UNIQUE KEY `inputEmail` (`inputEmail`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `answers`
---
-ALTER TABLE `answers`
-  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `questions`
---
-ALTER TABLE `questions`
-  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `RSO`
---
-ALTER TABLE `RSO`
-  MODIFY `rso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
