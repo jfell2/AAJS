@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 14, 2019 at 11:37 PM
+-- Generation Time: Apr 19, 2019 at 07:48 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `rso_matcher`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answers`
+--
+
+CREATE TABLE `answers` (
+  `q_id` int(11) NOT NULL,
+  `a_id` int(11) NOT NULL,
+  `a_text` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions`
+--
+
+CREATE TABLE `questions` (
+  `q_id` int(11) NOT NULL,
+  `q_title` text NOT NULL,
+  `q_text` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -78,19 +102,23 @@ CREATE TABLE `RSO_members` (
 INSERT INTO `RSO_members` (`Title`, `netid`) VALUES
 ('8 to Create', 'ipon2'),
 ('Alpha Phi Omega', 'ipon2'),
+('Alpha Phi Omega', 'jfell2'),
 ('Alpha Phi Omega', 'suhinad2'),
 ('Alpha Pi Mu', 'axu5'),
+('Cube Consulting', 'jfell2'),
 ('Cube Consulting', 'snagar9'),
 ('ECE SAC', 'pallavi3'),
 ('Engineering Open House', 'bmw4'),
 ('Hack4Impact', 'dschoi3'),
 ('Hack4Impact', 'mal7'),
 ('HackIllinois', 'bmw4'),
+('HackIllinois', 'jfell2'),
 ('Illini Boxing', 'dschoi3'),
 ('Illini Formula Electric', 'dsliu2'),
 ('Illini Mentor Program', 'krakman2'),
 ('Illini Student Musicals', 'amyhoke2'),
 ('Illini Student Musicals', 'axu5'),
+('Illini Student Musicals', 'kway4'),
 ('Pi Tau Sigma', 'dsliu2'),
 ('Society of Women Engineers', 'aashnaw2'),
 ('Society of Women Engineers', 'pallavi3'),
@@ -126,7 +154,9 @@ INSERT INTO `Users` (`netid`, `inputEmail`, `firstName`, `lastName`, `inputPassw
 ('dschoi3', 'dschoi3@illinois.edu', 'Daniel', 'Choi', 'passwordD', 'Computer Science', 2021, 'Bachelors'),
 ('dsliu2', 'dsliu2@illinois.edu', 'Derrick', 'Liu', 'passwordD', 'Mechanical Engineering', 2021, 'Bachelors'),
 ('ipon2', 'ipon2@illinois.edu', 'I', 'Pon', 'passwordI', 'Art History', 2019, 'Bachelors'),
+('jfell2', 'jfell2@illinois.edu', 'Justin', 'Fell', 'super2man', 'Statistics', 2019, 'Bachelors'),
 ('krakman2', 'krakman2@illinois.edu', 'K', 'Rakman', 'passwordK', 'Psychology', 2019, 'Bachelors'),
+('kway4', 'kate.way4@gmail.com', 'Kate', 'Way', 'passwordK', 'English', 2020, 'Bachelors'),
 ('mal7', 'mal7@illinois.edu', 'Michael', 'Leon', 'passwordM', 'Computer Science', 2021, 'Bachelors'),
 ('mliao9', 'mliao9@illinois.edu', 'Michael', 'Liao', 'passwordM', 'Systems Engineering and Design', 2019, 'Graduate'),
 ('pallavi3', 'pallavi3@illinois.edu', 'Pallavi', 'Narayanan', 'passwordP', 'Computer Engineering', 2021, 'Bachelors'),
@@ -136,6 +166,18 @@ INSERT INTO `Users` (`netid`, `inputEmail`, `firstName`, `lastName`, `inputPassw
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`a_id`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`q_id`);
 
 --
 -- Indexes for table `RSO`
@@ -156,6 +198,22 @@ ALTER TABLE `RSO_members`
 ALTER TABLE `Users`
   ADD PRIMARY KEY (`netid`),
   ADD UNIQUE KEY `inputEmail` (`inputEmail`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `answers`
+--
+ALTER TABLE `answers`
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

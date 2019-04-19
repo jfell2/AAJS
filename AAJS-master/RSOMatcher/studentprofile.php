@@ -55,6 +55,9 @@ $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."
             <a class="nav-link" href="rsoprofile.php">RSO Profile</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="forum.php">Forum</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="logout.php">Logout</a>
           </li>
         </ul>

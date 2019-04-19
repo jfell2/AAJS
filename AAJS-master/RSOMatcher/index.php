@@ -53,6 +53,9 @@ if(isset($_SESSION['sig']))
             <a class="nav-link" href="rsoprofile.php">RSO Profile</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="forum.php">Forum</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href=<?php echo"$logdata"?>><?php echo"$logbutton"?></a>
           </li>
         </ul>
