@@ -17,15 +17,17 @@ if(isset($_REQUEST['submit']))
 
 	include('db_login.php');
 
-	$query=mysqli_query($link, "INSERT INTO Users (netid, inputEmail, firstName, lastName, inputPassword, major, graduationYear, degreeLevelPursuing) VALUES ('".$Net_ID."','".$Email."','".$FirstName."','".$LastName."','".$Password."','".$Major."','".$GradYear."','".$DegLevPur."');")
+	$query = mysqli_query($link, "INSERT INTO Users (netid, inputEmail, firstName, lastName, inputPassword, major, graduationYear, degreeLevelPursuing) VALUES ('".$Net_ID."','".$Email."','".$FirstName."','".$LastName."','".$Password."','".$Major."','".$GradYear."','".$DegLevPur."');")
 	or die("Error in registration!!");
-	$query=mysqli_query($link, "INSERT INTO RSO_members (Title, netid) VALUES ('".$RSO_1."','".$Net_ID."');") or die("Error in registration!!");
-	#$query=mysqli_query($link, "INSERT INTO RSO_members (Title, netid) VALUES ('".$RSO_2."','".$Net_ID."');") or die("Error in registration!!");
 
+	if ($query) {
+		$query2 =mysqli_query($link, "INSERT INTO RSO_members (Title, netid) VALUES ('".$RSO_1."','".$Net_ID."'), ('".$RSO_2."','".$Net_ID."');") or die("Error in registration!!");
+	}
 	#Go to the login page
 
 	echo('<script>window.location="login.php"</script>');
 }
+
 
 #Continue to show the form if it was not submitted
 
