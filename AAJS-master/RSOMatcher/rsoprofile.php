@@ -333,28 +333,19 @@ while($newrow = mysqli_fetch_assoc($query)) {
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">RSO Name:</label>
-            <input type="text" class="form-control search-slt" name="deleteTitle" placeholder="Enter RSO Title">
-          </div>
+        <form method="post" id="delete_form" action="deleterso.php">
+            <label for>RSO Name:</label>
+            <input type="text" class="form-control" name="deleteTitle" placeholder="Enter RSO Title" />
+            <br />
+            <input type="submit" name="submitdelete" id="submitdelete" value="Delete" />
         </form>
       </div>
       <div class="modal-footer">
-        <p><input type="submit" name="submitr" class="btn btn-primary" value="Submit" /></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
-<?php
-if(isset($_REQUEST['submitd']))
-{
-  include('db_login.php');
-  $deleteFilter=$_REQUEST['deleteTitle'];
-  $deletequery = mysqli_query($link, "DELETE FROM RSO r WHERE r.title='$deleteFilter'");
-  echo "done";
-}
-?>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update" data-whatever="@getbootstrap">Update RSO</button>
 
 <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="addLabel" aria-hidden="true">
