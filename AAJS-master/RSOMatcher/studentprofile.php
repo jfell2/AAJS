@@ -133,6 +133,58 @@ $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."
         <p>
 
         </p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRSOsp" data-whatever="@getbootstrap">Add RSO</button>
+        <div class="modal fade" id="addRSOsp" tabindex="-1" role="dialog" aria-labelledby="addLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addRSOsplabel">Add RSO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="post" id="update_form" action="addrsosp.php">
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">RSO:</label>
+                    <input type="text" class="form-control" name = "addRSOsp" placeholder = "Enter the RSO you would like to add here." id="recipient-name ">
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">NetID:</label>
+                    <input type="text" class="form-control" name = "addnetid" placeholder = "Please enter your netid to confirm." id="recipient-name">
+                  </div>
+                  <input type="submit" name="addsubmit" class="btn btn-primary btn-block" value="Add RSO">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removeRSOsp" data-whatever="@getbootstrap">Remove RSO</button>
+        <div class="modal fade" id="removeRSOsp" tabindex="-1" role="dialog" aria-labelledby="removeLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="removeRSOsplabel">Remove RSO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="post" id="remove_form" action="removersosp.php">
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">RSO:</label>
+                    <input type="text" class="form-control" name = "removeRSOsp" placeholder = "Enter the RSO you would like to remove here." id="recipient-name ">
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">NetID:</label>
+                    <input type="text" class="form-control" name = "removenetid" placeholder = "Please enter your netid to confirm." id="recipient-name">
+                  </div>
+                  <input type="submit" name="removesubmit" class="btn btn-primary btn-block" value="Remove RSO">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update" data-whatever="@getbootstrap">Update Profile</button>
         <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="addLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
