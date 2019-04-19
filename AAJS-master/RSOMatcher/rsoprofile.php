@@ -265,46 +265,33 @@ while($newrow = mysqli_fetch_assoc($query)) {
          </button>
        </div>
        <div class="modal-body">
-         <form action="insertrso.php">
-           <div class="form-group">
+        <form method="post" id="add_form" action="insertrso.php">
              <label for="recipient-name" class="col-form-label">RSO Title:</label>
-             <input type="text" class="form-control" name="RSO">
-           </div>
-           <div class="form-group">
+             <input type="text" class="form-control" name="title">
              <label for="recipient-name" class="col-form-label">President:</label>
              <input type="text" class="form-control" name="president">
-           </div>
-           <div class="form-group">
              <label for="recipient-name" class="col-form-label">Treasurer:</label>
              <input type="text" class="form-control" name="treasurer">
-           </div>
-           <div class="form-group">
-             <label for="recipient-name" class="col-form-label">Website:</label>
-             <input type="text" class="form-control" name="website">
-           </div>
-           <div class="form-group">
-             <label for="recipient-name" class="col-form-label">Email:</label>
-             <input type="text" class="form-control" name="email">
-           </div>
-           <div class="form-group">
              <label for="message-text" class="col-form-label">Description:</label>
              <textarea class="form-control" name="description"></textarea>
-           </div>
-           <div class="form-group">
-             <select class="form-control search-slt" name="Cetegory">
-                 <option value="" disabled selected>Category</option>
-                 <option value="Academic">Academic</option>
-                 <option value="Hobby">Hobby</option>
-                 <option value="Honors">Honors</option>
-                 <option value="Leadership">Leadership</option>
-                 <option value="Planning Events">Planning Events</option>
-                 <option value="Professional">Professional</option>
-                 <option value="Sports">Sports</option>
-                 <option value="Volunteering">Volunteering</option>
-             </select>
-         </div>
-         <div class="form-group">
-           <select class="form-control search-slt" name="Department">
+             <label for="recipient-name" class="col-form-label">Website:</label>
+             <input type="text" class="form-control" name="website">
+             <label for="recipient-name" class="col-form-label">Email:</label>
+             <input type="text" class="form-control" name="email">
+            </br>
+            <select class="form-control search-slt" name="category">
+                <option value="" disabled selected>Category</option>
+                <option value="Academic">Academic</option>
+                <option value="Hobby">Hobby</option>
+                <option value="Honors">Honors</option>
+                <option value="Leadership">Leadership</option>
+                <option value="Planning Events">Planning Events</option>
+                <option value="Professional">Professional</option>
+                <option value="Sports">Sports</option>
+                <option value="Volunteering">Volunteering</option>
+            </select>
+           </br>
+            <select class="form-control search-slt" name="department">
                <option value="" disabled selected>Department</option>
                <option value="Art">Art</option>
                <option value="Computer Science">CS</option>
@@ -314,12 +301,10 @@ while($newrow = mysqli_fetch_assoc($query)) {
                <option value="Industrial Engineering">IE</option>
                <option value="Mechanical Engineering">ME</option>
                <option value="None">No Affiliation</option>
-           </select>
-       </div>
-       <input type="submit" value="submit">
+             </select>
+            </br>
+            <input type="submit" name="submitinsert" id="submitinsert" value="Add" />
          </form>
-       </div>
-       <div class="modal-footer">
        </div>
      </div>
    </div>
@@ -343,8 +328,6 @@ while($newrow = mysqli_fetch_assoc($query)) {
             <br />
             <input type="submit" name="submitdelete" id="submitdelete" value="Delete" />
         </form>
-      </div>
-      <div class="modal-footer">
       </div>
     </div>
   </div>
