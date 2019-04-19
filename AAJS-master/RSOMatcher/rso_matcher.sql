@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 19, 2019 at 07:48 AM
+-- Generation Time: Apr 19, 2019 at 10:41 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -34,6 +34,16 @@ CREATE TABLE `answers` (
   `a_text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`q_id`, `a_id`, `a_text`) VALUES
+(1, 1, 'It does this'),
+(1, 2, 'It does that'),
+(1, 7, 'The time is 2:38am'),
+(1, 8, 'The time is 2:38am');
+
 -- --------------------------------------------------------
 
 --
@@ -42,9 +52,16 @@ CREATE TABLE `answers` (
 
 CREATE TABLE `questions` (
   `q_id` int(11) NOT NULL,
-  `q_title` text NOT NULL,
-  `q_text` text NOT NULL
+  `q_title` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`q_id`, `q_title`) VALUES
+(1, 'What does this do?'),
+(6, 'What time is it?');
 
 -- --------------------------------------------------------
 
@@ -53,6 +70,7 @@ CREATE TABLE `questions` (
 --
 
 CREATE TABLE `RSO` (
+  `rso_id` int(11) NOT NULL,
   `Title` varchar(30) NOT NULL,
   `President` varchar(30) NOT NULL,
   `Treasurer` varchar(30) NOT NULL,
@@ -67,22 +85,22 @@ CREATE TABLE `RSO` (
 -- Dumping data for table `RSO`
 --
 
-INSERT INTO `RSO` (`Title`, `President`, `Treasurer`, `Description`, `Category`, `Website`, `Email`, `Department`) VALUES
-('8 to Create', 'Pres8', 'Treas8', '8 Hours for 8 Artists to Create', 'Hobby', 'https://publish.illinois.edu/8', '8toCreate@gmail.com', 'Art'),
-('Alpha Phi Omega', 'PresAPO', 'TreasAPO', 'Educational Service Fraternity', 'Volunteering', 'http://apo-aa.org/', 'secretary@apo-aa.org', 'None'),
-('Alpha Pi Mu', 'PresAPM', 'TreasAPM', 'Industrial Engineering Honors Society', 'Honors', 'https://alphapimu.com/', 'vhoff2@illinois.edu\r\n', 'Industrial Engineering'),
-('Cube Consulting', 'PresCube', 'TreasCube', 'Non-profit consulting organization', 'Academic', 'http://www.cubeconsulting.org/', 'cubeuiuc@gmail.com', 'Engineering'),
-('ECE SAC', 'PresSAC', 'TreasSAC', 'Representing Students in ECE', 'Leadership', 'https://sac.ece.illinois.edu/', 'ecesac@gmail.com', 'ECE'),
-('Engineering Open House', 'PresEOH', 'TreasEOH', 'Displaying Engineering Projects', 'Planning Events', 'https://www.eohillinois.org/', 'eoh@gmail.com', 'Engineering'),
-('Hack4Impact', 'PresH4I', 'TreasH4I', 'Software for Nonprofits', 'Professional', 'https://uiuc.hack4impact.org/', 'tk2@illinois.edu', 'Computer Science'),
-('HackIllinois', 'PresHI', 'TreasHI', 'Largest Open Source Hackathon', 'Planning Events', 'https://www.hackillinois.org/', 'help@hackillinois.org', 'Computer Science'),
-('Illini Boxing', 'PresBoxing', 'TreasBoxing', 'Amateur and Competetive Boxing', 'Sports', 'http://illiniboxing.com/', 'illiniboxingclub@gmail.com', 'None'),
-('Illini Formula Electric', 'PresFormula', 'TreasFormula', 'Building Race Cars', 'Academic', 'https://www.illiniformulaelect', 'formula@gmail.com', 'Mechanical Engineering'),
-('Illini Mentor Program', 'Jaimin Patel', 'Sam Joshi', 'University of Illinois students mentoring future leaders today', 'Leadership', 'http://publish.illinois.edu/il', 'jpate203@illinois.edu', 'None'),
-('Illini Student Musicals', 'Aleeza Leder Macek', 'Kelsey Handschuh', 'Performance of musical theater at the University of Illinois at Urbana-Champaign', 'Hobby', 'https://illinimusicals.wixsite', 'President@IlliniStudentMusical', 'Fine Arts'),
-('Pi Tau Sigma', 'Alexandra Baumgart', 'Omar Darwish', 'Mechanical Engineering Honors Society', 'Honors', 'https://pitausigma.mechse.illi', 'baumgrt2@illinois.edu', 'Mechanical Engineering'),
-('Society of Women Engineers', 'Abby Pakeltis', 'Alice Lin', 'Diverse network of women in pursuit of engineering', 'Professional', 'https://www.societyofwomenengi', 'UIUC.SWE@GMAIL.COM', 'Engineering'),
-('Women in ECE', 'Monil Pathak', 'Carolyn Nye', 'Inspire women in Electrical and Computer Engineering', 'Professional', 'https://wece.ece.illinois.edu/', 'wece.uiuc@gmail.com', 'ECE');
+INSERT INTO `RSO` (`rso_id`, `Title`, `President`, `Treasurer`, `Description`, `Category`, `Website`, `Email`, `Department`) VALUES
+(1, '8 to Create', 'Pres8', 'Treas8', '8 Hours for 8 Artists to Create', 'Hobby', 'https://publish.illinois.edu/8', '8toCreate@gmail.com', 'Art'),
+(2, 'Alpha Phi Omega', 'PresAPO', 'TreasAPO', 'Educational Service Fraternity', 'Volunteering', 'http://apo-aa.org/', 'secretary@apo-aa.org', 'None'),
+(3, 'Alpha Pi Mu', 'PresAPM', 'TreasAPM', 'Industrial Engineering Honors Society', 'Honors', 'https://alphapimu.com/', 'vhoff2@illinois.edu\r\n', 'Industrial Engineering'),
+(4, 'Cube Consulting', 'PresCube', 'TreasCube', 'Non-profit consulting organization', 'Academic', 'http://www.cubeconsulting.org/', 'cubeuiuc@gmail.com', 'Engineering'),
+(5, 'ECE SAC', 'PresSAC', 'TreasSAC', 'Representing Students in ECE', 'Leadership', 'https://sac.ece.illinois.edu/', 'ecesac@gmail.com', 'ECE'),
+(6, 'Engineering Open House', 'PresEOH', 'TreasEOH', 'Displaying Engineering Projects', 'Planning Events', 'https://www.eohillinois.org/', 'eoh@gmail.com', 'Engineering'),
+(7, 'Hack4Impact', 'PresH4I', 'TreasH4I', 'Software for Nonprofits', 'Professional', 'https://uiuc.hack4impact.org/', 'tk2@illinois.edu', 'Computer Science'),
+(8, 'HackIllinois', 'PresHI', 'TreasHI', 'Largest Open Source Hackathon', 'Planning Events', 'https://www.hackillinois.org/', 'help@hackillinois.org', 'Computer Science'),
+(9, 'Illini Boxing', 'PresBoxing', 'TreasBoxing', 'Amateur and Competetive Boxing', 'Sports', 'http://illiniboxing.com/', 'illiniboxingclub@gmail.com', 'None'),
+(10, 'Illini Formula Electric', 'PresFormula', 'TreasFormula', 'Building Race Cars', 'Academic', 'https://www.illiniformulaelect', 'formula@gmail.com', 'Mechanical Engineering'),
+(11, 'Illini Mentor Program', 'Jaimin Patel', 'Sam Joshi', 'University of Illinois students mentoring future leaders today', 'Leadership', 'http://publish.illinois.edu/il', 'jpate203@illinois.edu', 'None'),
+(12, 'Illini Student Musicals', 'Aleeza Leder Macek', 'Kelsey Handschuh', 'Performance of musical theater at the University of Illinois at Urbana-Champaign', 'Hobby', 'https://illinimusicals.wixsite', 'President@IlliniStudentMusical', 'Fine Arts'),
+(14, 'Pi Tau Sigma', 'Alexandra Baumgart', 'Omar Darwish', 'Mechanical Engineering Honors Society', 'Honors', 'https://pitausigma.mechse.illi', 'baumgrt2@illinois.edu', 'Mechanical Engineering'),
+(15, 'Society of Women Engineers', 'Abby Pakeltis', 'Alice Lin', 'Diverse network of women in pursuit of engineering', 'Professional', 'https://www.societyofwomenengi', 'UIUC.SWE@GMAIL.COM', 'Engineering'),
+(16, 'Women in ECE', 'Monil Pathak', 'Carolyn Nye', 'Inspire women in Electrical and Computer Engineering', 'Professional', 'https://wece.ece.illinois.edu/', 'wece.uiuc@gmail.com', 'ECE');
 
 -- --------------------------------------------------------
 
@@ -161,6 +179,7 @@ INSERT INTO `Users` (`netid`, `inputEmail`, `firstName`, `lastName`, `inputPassw
 ('mliao9', 'mliao9@illinois.edu', 'Michael', 'Liao', 'passwordM', 'Systems Engineering and Design', 2019, 'Graduate'),
 ('pallavi3', 'pallavi3@illinois.edu', 'Pallavi', 'Narayanan', 'passwordP', 'Computer Engineering', 2021, 'Bachelors'),
 ('snagar9', 'snagar9@illinois.edu', 'Saloni', 'Nagarkar', 'passwordS', 'Mechnical Engineering', 2021, 'Bachelors'),
+('snarend2', 'snarend2@illinois.edu', 'Sanjit', 'Narendra', 'pass', 'Industrial Engineering', 2019, 'Bachelors'),
 ('suhinad2', 'suhinad2@illinois.edu', 'Suhina', 'Das', 'passwordS', 'MCB', 2021, 'Bachelors');
 
 --
@@ -171,7 +190,8 @@ INSERT INTO `Users` (`netid`, `inputEmail`, `firstName`, `lastName`, `inputPassw
 -- Indexes for table `answers`
 --
 ALTER TABLE `answers`
-  ADD PRIMARY KEY (`a_id`);
+  ADD PRIMARY KEY (`a_id`),
+  ADD KEY `q_id` (`q_id`);
 
 --
 -- Indexes for table `questions`
@@ -183,7 +203,8 @@ ALTER TABLE `questions`
 -- Indexes for table `RSO`
 --
 ALTER TABLE `RSO`
-  ADD PRIMARY KEY (`Title`);
+  ADD PRIMARY KEY (`Title`),
+  ADD KEY `rso_id` (`rso_id`);
 
 --
 -- Indexes for table `RSO_members`
@@ -207,17 +228,29 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `RSO`
+--
+ALTER TABLE `RSO`
+  MODIFY `rso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `answers`
+--
+ALTER TABLE `answers`
+  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`q_id`) REFERENCES `questions` (`q_id`);
 
 --
 -- Constraints for table `RSO_members`

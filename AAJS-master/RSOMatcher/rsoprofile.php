@@ -183,8 +183,8 @@ while($newrow = mysqli_fetch_assoc($query)) {
  $memberquery= mysqli_query($link, "SELECT rm.NetID FROM RSO_members rm WHERE rm.title='".$newrow['Title']."'");
 ?>
   <div class="wrap-collabsible">
-    <input id=<?php echo $newrow['Title'] ?> class="toggle" type="checkbox">
-    <label for=<?php echo $newrow['Title'] ?> class="lbl-toggle"><?php echo $newrow['Title'] ?></label>
+    <input id=<?php echo "collapse" . $newrow['President'] ?> class="toggle" type="checkbox">
+    <label for=<?php echo "collapse" . $newrow['President'] ?> class="lbl-toggle"><?php echo $newrow['Title'] ?></label>
     <div class="collapsible-content">
       <div class="content-inner">
         <div class="row">
@@ -223,7 +223,7 @@ while($newrow = mysqli_fetch_assoc($query)) {
         <div>
           <center>
             <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="<?php echo "#Modal" . $newrow['President'] ?>">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="<?php echo "#Modal" . $newrow['rso_id'] ?>">
         View <?php echo $newrow['Title'] ?> Members
       </button>
 
@@ -233,7 +233,7 @@ while($newrow = mysqli_fetch_assoc($query)) {
   </div>
   <br>
   <!-- Modal -->
-  <div class="modal fade" id="<?php echo "Modal" . $newrow['President'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $newrow['Title'] ?>Label" aria-hidden="true">
+  <div class="modal fade" id="<?php echo "Modal" . $newrow['rso_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $newrow['Title'] ?>Label" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">

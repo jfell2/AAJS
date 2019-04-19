@@ -23,7 +23,7 @@ if(isset($_SESSION['sig']))
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>RSO Matcher - RSO Profile</title>
+  <title>RSO Matcher - Forum</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@ if(isset($_SESSION['sig']))
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">RSO Matcher</a>
+      <a class="navbar-brand" href="index.php">RSO Matcher</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -50,8 +50,11 @@ if(isset($_SESSION['sig']))
           <li class="nav-item">
             <a class="nav-link" href="studentprofile.php">Student Profile</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rsoprofile.php">RSO Profile</a>
+          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="">RSO Profile</a>
+            <a class="nav-link" href="forum.php">Forum</a>
             <span class="sr-only">(current)</span>
           </li>
           <li class="nav-item">
