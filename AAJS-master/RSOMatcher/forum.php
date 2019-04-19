@@ -120,11 +120,11 @@ while($newrow = mysqli_fetch_assoc($query)) {
           <?php
           if(isset($_REQUEST['submitA']))
           {
-          	$a_txt=$_REQUEST['answer_txt'];
+            $a_txt=$_REQUEST['answer_txt'];
 
-          	include('db_login.php');
+            include('db_login.php');
 
-          	$query = mysqli_query($link, "INSERT INTO answers (a_text, q_id) VALUES ('".$a_txt."', '".$newrow['q_id']."' );");
+            $query = mysqli_query($link, "INSERT INTO answers (a_text, q_id) VALUES ('".$a_txt."', '".$newrow['q_id']."' );");
             echo('<script>window.location="forum.php"</script>');
           }
 
