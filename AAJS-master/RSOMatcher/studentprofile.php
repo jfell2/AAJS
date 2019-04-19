@@ -9,7 +9,8 @@ if(!isset($_SESSION['sig']))
 include('db_login.php');
 
 $Email = $_SESSION['login'];
-$query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."';")
+$query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."';");
+
  ?>
 
 
@@ -91,6 +92,44 @@ $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."
         }
          ?>
         </table>
+        <h2 class="mt-5">Your RSOs</h1>
+        <table class ="table-light" border= "2" cellpadding = "4" align="center">
+            <tr>
+                <th> RSO Title </th>
+                <th> President </th>
+                <th> Treasurer </th>
+                <th> Description </th>
+                <th> Category </th>
+                <th> Website </th>
+                <th> Email </th>
+                <th> Department </th>
+            </tr>
+        <?php
+        $query = mysqli_query($link, "SELECT RSO.Title, President, Treasurer, Description, Category, Website, Email, Department FROM RSO INNER JOIN RSO_members ON RSO.Title = RSO_members.Title;");
+        $query2 = mysqli_query($link, "SELECT Title, President, Treasurer, Description, Category, Website, Email, Department
+                                              FROM ((SELECT Users.netid as netid, inputEmail, Title, President, Treasurer, Description, Category, Website, Email, Department
+                                                            FROM Users INNER JOIN ((SELECT RSO.Title as Title, President, Treasurer, Description, Category, Website, Email, Department, RSO_members.netid as netid
+                                                                                           FROM RSO INNER JOIN RSO_members ON RSO.Title = RSO_members.Title) as temp) ON temp.netid = Users.netid
+                                                                                           WHERE inputEmail = '".$Email."') as temp2);");
+        if (!$query2) {
+                printf("Error: %s\n", mysqli_error($link));
+                exit();
+        }
+        while ($row = mysqli_fetch_array($query2)) {
+            echo
+                "<tr>
+                <td>{$row['Title']}</td>
+                <td>{$row['President']}</td>
+                <td>{$row['Treasurer']}</td>
+                <td>{$row['Description']}</td>
+                <td>{$row['Category']}</td>
+                <td>{$row['Website']}</td>
+                <td>{$row['Email']}</td>
+                <td>{$row['Department']}</td>
+                </tr>\n";
+        }
+         ?>
+        </table>
         <p>
 
         </p>
@@ -162,45 +201,7 @@ $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."
 
         <h2 class="mt-5"> Recommendations </h2>
         <p class="lead"> This is a shortlist of RSOs that our advanced matching algorithm has hand-picked for you as a possible match based on your profile.  We hope our recommendations help you in your search to find an RSO that is right for you!</p>
-        <table class ="table-light" border= "2" cellpadding = "4" align="center">
-            <tr>
-                <th> Title </th>
-                <th> Description </th>
-                <th> Category </th>
-                <th> Website</th>
-                <th> Email </th>
-                <th> Department </th>
-            </tr>
-        <?php
-                $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."';");
-                while ($row = mysqli_fetch_array($query)) {
-                        $netid = $row['netid'];
-                        $inputEmail = $row['inputEmail'];
-                        $firstName = $row['firstName'];
-                        $lastName = $row['lastName'];
-                        $major = $row['major'];
-                        $graduationYear = $row['graduationYear'];
-                        $degreeLevelPursuing = $row['degreeLevelPursuing'];
-                }
-                $query = mysqli_query($link, "SELECT * FROM ((SELECT * FROM ((SELECT * FROM ((SELECT *, count(*) as countmajor FROM ((SELECT Title, Description, Category, Website, Email, Department, graduationYear, RSOmerge.netid as netid, major FROM Users INNER JOIN ((SELECT RSO_members.Title, RSO_members.netid, Description, Category, Website, Email, Department FROM RSO INNER JOIN RSO_members ON RSO.Title = RSO_members.Title) as RSOmerge) ON Users.netid = RSOmerge.netid) as trimerge) WHERE major = '".$major."' GROUP BY Title) as t1) HAVING countmajor > 0) as final1) UNION ( SELECT * FROM((SELECT *, count(*) as countgradyear FROM ((SELECT Title, Description, Category, Website, Email, Department, graduationYear, RSOmerge.netid as netid, major FROM Users INNER JOIN ((SELECT RSO_members.Title, RSO_members.netid, Description, Category, Website, Email, Department FROM RSO INNER JOIN RSO_members ON RSO.Title = RSO_members.Title) as RSOmerge) ON Users.netid = RSOmerge.netid) as trimerge) WHERE graduationYear = '".$graduationYear."' GROUP BY Title) as t2) HAVING countgradyear > 1)) as final) GROUP BY Title;");
-                if (!$query) {
-                    printf("Error: %s\n", mysqli_error($link));
-                    exit();
-                }
-                while ($row = mysqli_fetch_array($query)) {
-                        echo
-                            "<tr>
-                            <td>{$row['Title']}</td>
-                            <td>{$row['Description']}</td>
-                            <td>{$row['Category']}</td>
-                            <td>{$row['Website']}</td>
-                            <td>{$row['Email']}</td>
-                            <td>{$row['Department']}</td>
-                            </tr>\n";
 
-                }
-         ?>
-         </table>
          <p>
 
 
