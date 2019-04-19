@@ -76,6 +76,10 @@ $userinfo = mysqli_fetch_assoc($uquery)
   </nav>
 
   <!-- Page Content -->
+  <h1 class="text-center mt-4">Forum</h4>
+  <h4 class="text-center mb-4">Be a part of the RSO community by asking and answering questions right here!</h6>
+
+<h3 class="text mb-4">Questions:</h6>
 <?php
 include('db_login.php');
 
@@ -93,7 +97,7 @@ while($newrow = mysqli_fetch_assoc($query)) {
         include('db_login.php');
         $query2 = mysqli_query($link, "SELECT * from answers where answers.q_id = '".$newrow['q_id']."'");
         while($row = mysqli_fetch_assoc($query2)) {
-          echo  "Answer by " . $userinfo['firstName'] . ": " . $row['a_text'];
+          echo  "Answer by " . $row['a_netid'] . ": " . $row['a_text'];
         ?>
         <br>
         <br>
@@ -134,7 +138,7 @@ while($newrow = mysqli_fetch_assoc($query)) {
 
             include('db_login.php');
 
-            $query = mysqli_query($link, "INSERT INTO answers (a_text, q_id) VALUES ('".$a_txt."', '".$newrow['q_id']."' );");
+            $query = mysqli_query($link, "INSERT INTO answers (a_text, q_id, a_netid) VALUES ('".$a_txt."', '".$newrow['q_id']."', '".$userinfo['netid']."' );");
             echo('<script>window.location="forum.php"</script>');
           }
 
