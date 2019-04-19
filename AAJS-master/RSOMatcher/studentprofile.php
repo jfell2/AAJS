@@ -176,18 +176,12 @@ $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."
                 </button>
               </div>
               <div class="modal-body">
-                <p class="lead">Are you sure you want to delete your profile?</p>
-              </div>
-              <div class="modal-body">
-                <input type="submit" name="deletesubmit" class="btn btn-primary btn-block" value="Delete Profile">
-                <?php
-                        include('db_login.php');
-                        if(isset($_REQUEST['deletesubmit'])) {
-                                $query=mysqli_query($link, "DELETE * FROM Users WHERE inputEmail='".$Email."';");
-                                echo('<script>alert("Your profile has been deleted.");</script>');
-                                echo('<script>window.location="index.php"</script>');
-                        }
-                ?>
+                <form method="post" id="delete_form" action="deletesp.php">
+                  <p class="lead">Are you sure you want to delete your profile?</p>
+                  <input type="text" class="form-control" name="deleteTitle" placeholder="Enter your account netid to confirm." />
+                <br />
+                  <input type="submit" class="btn btn-primary btn-block" name= "submitdelete" id="submitdelete" value="Delete" />
+              </form>
               </div>
             </div>
           </div>
