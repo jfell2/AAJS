@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 19, 2019 at 09:01 PM
+-- Generation Time: Apr 19, 2019 at 09:39 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -35,6 +35,13 @@ CREATE TABLE `answers` (
   `a_netid` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`q_id`, `a_id`, `a_text`, `a_netid`) VALUES
+(13, 29, 'A good RSO for freshmen to join is 8 to Create', 'snarend2');
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +52,14 @@ CREATE TABLE `questions` (
   `q_id` int(11) NOT NULL,
   `q_title` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`q_id`, `q_title`) VALUES
+(13, 'What is the best RSO for a Freshman interested in engineering and design?'),
+(14, 'How hard is it to get involved with multiple organizations in one semester?');
 
 -- --------------------------------------------------------
 
@@ -206,6 +221,27 @@ ALTER TABLE `Users`
   ADD PRIMARY KEY (`netid`),
   ADD UNIQUE KEY `inputEmail` (`inputEmail`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `answers`
+--
+ALTER TABLE `answers`
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT for table `RSO`
+--
+ALTER TABLE `RSO`
+  MODIFY `rso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
