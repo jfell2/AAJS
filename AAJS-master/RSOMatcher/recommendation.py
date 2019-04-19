@@ -20,10 +20,10 @@ def mysqlconnect(email):
         print("Can't connect to database")
         return 0
     # If Connection Is Successful
-    print("Connected")
-
-# Making Cursor Object For Query Execution
-cursor=db_connection.cursor(buffered=True)
+    #print("Connected")
+    
+    # Making Cursor Object For Query Execution
+    cursor=db_connection.cursor(buffered=True)
 
 # Executing Query
 cursor.execute("SELECT CURDATE();")
@@ -58,7 +58,6 @@ def recommend (db_connection, cursor, email):
     user_wanted = user_df[user_df['netid']==NetID]
     
     user_df['Similarity'] = 0.00000
-    #members_df['Similarity'] = 0.00000
     
     for index in range(user_wanted.shape[0]):
         for column in user_df.columns[:len(user_df.columns) - 1]:
@@ -93,8 +92,8 @@ for index, row in ass_member.iterrows():
 best_df = rso_df.nlargest(5, 'Similarity')
 #best_df = rso_df.sort_values('Similarity', ascending = False).head(5)
 #print(best_df)
-best_df.to_html('filename.html')
-    return best_df
+#best_df.to_html('filename.html')
+    print (best_df.to_string(index=False))
 def levenshtein_ratio_and_distance(s, t, ratio_calc = True):
     # """ levenshtein_ratio_and_distance:
     #     Calculates levenshtein distance between two strings.
@@ -142,9 +141,11 @@ def levenshtein_ratio_and_distance(s, t, ratio_calc = True):
 
 # Function Call For Connecting To Our Database
 #print(sys.argv[1])
-
-#print ("Hello %s" % who)
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
+pd.set_option('colheader_justify', 'center')
 df = mysqlconnect(sys.argv[1])
-print (df)
+#print (df)
 # if __name__ == "__main__":
 #     app.run()
