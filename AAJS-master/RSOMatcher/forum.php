@@ -11,6 +11,16 @@ if(isset($_SESSION['sig']))
         $logdata = "login.php";
 }
 
+if(!isset($_SESSION['sig']))
+{
+        echo("<script>window.location='login.php'</script>");
+}
+
+include('db_login.php');
+
+$Email = $_SESSION['login'];
+$uquery = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."';");
+$userinfo = mysqli_fetch_assoc($uquery)
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +93,7 @@ while($newrow = mysqli_fetch_assoc($query)) {
         include('db_login.php');
         $query2 = mysqli_query($link, "SELECT * from answers where answers.q_id = '".$newrow['q_id']."'");
         while($row = mysqli_fetch_assoc($query2)) {
-          echo  "Answer: " . $row['a_text'];
+          echo  "Answer by " . $userinfo['firstName'] . ": " . $row['a_text'];
         ?>
         <br>
         <br>
@@ -115,10 +125,10 @@ while($newrow = mysqli_fetch_assoc($query)) {
           <form method="post" id="answer_text" action="forum.php">
               <input type="text" class="form-control" name="answer_txt" placeholder="Enter Your Answer Here" />
               <br />
-              <input type="submit" class="btn btn-primary btn-block" name="submitA" id="submitA" value="Add" />
+              <input type="submit" class="btn btn-primary btn-block" name="<?php echo $newrow['q_id'] ?>" id="<?php echo $newrow['q_id'] ?>" value="Add" />
           </form>
           <?php
-          if(isset($_REQUEST['submitA']))
+          if(isset($_REQUEST[$newrow['q_id']]))
           {
             $a_txt=$_REQUEST['answer_txt'];
 
