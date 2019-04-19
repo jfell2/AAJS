@@ -6,9 +6,13 @@ if(isset($_SESSION['sig']))
 {
         $logbutton = "Logout";
         $logdata = "logout.php";
+        $getstarted = "My Profile";
+        $startdata = "studentprofile.php";
 } else {
         $logbutton = "Login";
         $logdata = "login.php";
+        $getstarted = "Get Started";
+        $startdata = "register.php";
 }
 
 ?>
@@ -73,7 +77,8 @@ if(isset($_SESSION['sig']))
       </div>
     </div>
     <center>
-    <a class="btn btn-primary btn-lg " href="register.php" role="button">Get Started</a>
+    <a class="btn btn-primary btn-lg " href=<?php echo"$startdata"?> role="button"><?php echo"$getstarted" ?></a>
+
   </div>
 
 
