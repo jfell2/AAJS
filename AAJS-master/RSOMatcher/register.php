@@ -20,10 +20,10 @@ if(isset($_REQUEST['submit']))
 	$query = mysqli_query($link, "INSERT INTO Users (netid, inputEmail, firstName, lastName, inputPassword, major, graduationYear, degreeLevelPursuing) VALUES ('".$Net_ID."','".$Email."','".$FirstName."','".$LastName."','".$Password."','".$Major."','".$GradYear."','".$DegLevPur."');")
 	or die("Error in registration!!");
 
-	if (isset($RSO_1)) {
+	if ($RSO_1 != "") {
 		$query2 =mysqli_query($link, "INSERT INTO RSO_members (Title, netid) VALUES ('".$RSO_1."','".$Net_ID."');") or die("Error in registration!!");
 	}
-	if (isset($RSO_2)) {
+	if ($RSO_2 != "") {
 		$query3 =mysqli_query($link, "INSERT INTO RSO_members (Title, netid) VALUES ('".$RSO_2."','".$Net_ID."');") or die("Error in registration!!");
 	}
 	#Go to the login page
