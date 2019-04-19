@@ -326,7 +326,7 @@ while($newrow = mysqli_fetch_assoc($query)) {
             <label for>RSO Name:</label>
             <input type="text" class="form-control" name="deleteTitle" placeholder="Enter RSO Title" />
             <br />
-            <input type="submit" name="submitdelete" id="submitdelete" value="Delete" />
+            <input type="submit" class="btn btn-primary btn-block" name="submitdelete" id="submitdelete" value="Delete" />
         </form>
       </div>
     </div>
