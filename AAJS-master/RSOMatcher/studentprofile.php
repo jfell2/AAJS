@@ -144,23 +144,21 @@ $query = mysqli_query($link, "SELECT * FROM Users WHERE inputEmail = '".$Email."
                 </button>
               </div>
               <div class="modal-body">
-                <form>
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Email:</label>
-                    <input type="text" class="form-control" id="recipient-name">
-                  </div>
+                <form method="post" id="update_form" action="updatesp.php">
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Major:</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <input type="text" class="form-control" name = "updateMajor" id="recipient-name">
                   </div>
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Graduation Year:</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <input type="text" class="form-control" name = "updateGraduationYear" id="recipient-name">
                   </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Degree Level Persuing:</label>
+                    <input type="text" class="form-control" name = "updateDegreeLevelPersuing" id="recipient-name">
+                  </div>
+                  <input type="submit" name="updatesubmit" class="btn btn-primary btn-block" value="Update Profile">
                 </form>
-              </div>
-              <div class="modal-body">
-                <input type="submit" name="updatesubmit" class="btn btn-primary btn-block" value="Update Profile">
               </div>
             </div>
           </div>
